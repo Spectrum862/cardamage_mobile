@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.package.cardamage_detect">
+    package="com.example.cardamage_detect">
    <application
         android:label="cardamage_detect"
         android:icon="@mipmap/ic_launcher">
