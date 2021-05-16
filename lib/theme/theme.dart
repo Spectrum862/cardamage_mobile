@@ -15,4 +15,5 @@ class ThemeProvider {
   static final Color primaryLight = Color(0xFF3AACFF);
 
   static final double baseRadius = 16;
+  static final double smallRadius = 12;
 }

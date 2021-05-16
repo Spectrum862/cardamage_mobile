@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'login.state.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({Key key, this.title}) : super(key: key);
-  final String title;
+  LoginPage({Key key}) : super(key: key);
 
   @override
   LoginPageState createState() => new LoginPageState();

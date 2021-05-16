@@ -1,4 +1,5 @@
 import 'package:cardamage_detect/view/home/home.dart';
+import 'package:cardamage_detect/widgets/Navbar.dart';
 import 'package:flutter/material.dart';
 
 class HomePageState extends State<HomePage> {
@@ -6,8 +7,13 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [Text('eiei')],
+        child: Container(
+          padding: EdgeInsets.only(left: 24, right: 24),
+          child: Column(
+            children: [
+              Navbar(),
+            ],
+          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
-import 'package:cardamage_detect/view/login/login.dart';
+import 'package:cardamage_detect/theme/theme.dart';
+import 'package:cardamage_detect/view/home/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,10 +13,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: ThemeProvider.gray3,
+        primaryColor: ThemeProvider.primary,
         brightness: Brightness.light,
       ),
-      home: LoginPage(title: 'Flutter Demo Home Page'),
+      home: HomePage(),
     );
   }
 }

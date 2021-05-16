@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 class CTextField extends StatefulWidget {
   final String hintText;
   final TextEditingController controller;
-  CTextField({Key key, this.hintText, this.controller}) : super(key: key);
+  final IconData icon;
+  final bool small;
+  CTextField(
+      {Key key, this.hintText, this.controller, this.icon, this.small = false})
+      : super(key: key);
 
   @override
   _CTextField createState() => _CTextField();
@@ -33,19 +37,31 @@ class _CTextField extends State<CTextField> {
     return TextFormField(
       focusNode: _focusNode,
       decoration: InputDecoration(
+        contentPadding: widget.small
+            ? EdgeInsets.symmetric(vertical: 0.0)
+            : EdgeInsets.symmetric(vertical: 20.0),
+        prefixIcon: Icon(
+          widget.icon,
+          size: 20,
+        ),
         filled: true,
         fillColor: _focusNode.hasFocus
             ? ThemeProvider.primary.withAlpha(15)
             : ThemeProvider.white,
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: ThemeProvider.white),
-            borderRadius: BorderRadius.circular(ThemeProvider.baseRadius)),
+            borderRadius: widget.small
+                ? BorderRadius.circular(ThemeProvider.smallRadius)
+                : BorderRadius.circular(ThemeProvider.baseRadius)),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: ThemeProvider.primary),
-          borderRadius: BorderRadius.circular(ThemeProvider.baseRadius),
+          borderRadius: widget.small
+              ? BorderRadius.circular(ThemeProvider.smallRadius)
+              : BorderRadius.circular(ThemeProvider.baseRadius),
         ),
         hintText: widget.hintText,
       ),
+      style: TextStyle(fontSize: widget.small ? 14 : 14),
       controller: widget.controller,
     );
   }
