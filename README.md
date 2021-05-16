@@ -1,4 +1,4 @@
-# cardamage_datect
+# cardamage_detect
 
 A new Flutter project.
 

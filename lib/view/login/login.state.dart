@@ -1,33 +1,22 @@
-import 'package:cardamage_datect/Router/route.dart';
-import 'package:cardamage_datect/theme/util/HexColor.dart';
-import 'package:cardamage_datect/view/login/login.dart';
+import 'package:cardamage_detect/router/route.dart';
+import 'package:cardamage_detect/theme/theme.dart';
+import 'package:cardamage_detect/view/login/login.dart';
+import 'package:cardamage_detect/widgets/CTextField.dart';
+import 'package:cardamage_detect/widgets/GradientButton.dart';
 import 'package:flutter/material.dart';
 
 class LoginPageState extends State<LoginPage> {
   TextEditingController id = TextEditingController();
   TextEditingController password = TextEditingController();
-  FocusNode usernameNode;
-  FocusNode passwordNode;
 
-  @override
-  void initState() {
-    super.initState();
-    usernameNode = FocusNode();
-    passwordNode = FocusNode();
-  }
-
-  @override
-  void dispose() {
-    // Clean up the focus node when the Form is disposed.
-    usernameNode.dispose();
-    passwordNode.dispose();
-    super.dispose();
+  void onLogin() {
+    PageRouter.toHomePage(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor('#f6f6f6'),
+      backgroundColor: ThemeProvider.gray3,
       body: Center(
         child: Container(
           padding: EdgeInsets.only(right: 24, left: 24),
@@ -51,61 +40,22 @@ class LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 24,
               ),
-              TextFormField(
-                focusNode: usernameNode,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: usernameNode.hasFocus
-                      ? Color(0xFF262626)
-                      : Color(0xFFFFFFFF),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(width: 0, color: Color(0xFFFFFF)),
-                      borderRadius: BorderRadius.circular(16)),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: HexColor('#2663FF')),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  hintText: 'username',
-                ),
+              CTextField(
+                hintText: 'Username',
                 controller: id,
               ),
               SizedBox(
                 height: 16,
               ),
-              TextFormField(
-                focusNode: passwordNode,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: passwordNode.hasFocus
-                      ? Color(0xFF262626)
-                      : Color(0xFFFFFFFF),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(width: 0, color: Color(0xFFFFFF)),
-                      borderRadius: BorderRadius.circular(16)),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: HexColor('#2663FF')),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  hintText: 'password',
-                ),
+              CTextField(
+                hintText: 'Password',
                 controller: password,
               ),
               SizedBox(
                 height: 32,
               ),
-              ElevatedButton(
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 72,
-                  child: Center(
-                    child: Text('Sign In'),
-                  ),
-                ),
-                style: ButtonStyle(
-                    shape: MaterialStateProperty.all<OutlinedBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)))),
-                onPressed: () => PageRouter.toHomePage(context),
+              GradientButton(
+                label: 'Sign In',
               )
             ],
           ),

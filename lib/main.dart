@@ -1,4 +1,4 @@
-import 'package:cardamage_datect/view/login/login.dart';
+import 'package:cardamage_detect/view/login/login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
