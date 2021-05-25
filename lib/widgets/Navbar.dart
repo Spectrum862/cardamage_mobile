@@ -20,7 +20,7 @@ class _Navbar extends State<Navbar> {
         )),
         SizedBox(width: 16),
         Icon(
-          Icons.nightlight_round,
+          Icons.dark_mode,
           color: ThemeProvider.gray7,
           size: 30,
         ),

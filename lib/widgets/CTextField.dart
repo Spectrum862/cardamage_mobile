@@ -39,11 +39,13 @@ class _CTextField extends State<CTextField> {
       decoration: InputDecoration(
         contentPadding: widget.small
             ? EdgeInsets.symmetric(vertical: 0.0)
-            : EdgeInsets.symmetric(vertical: 20.0),
-        prefixIcon: Icon(
-          widget.icon,
-          size: 20,
-        ),
+            : EdgeInsets.symmetric(vertical: 20.0, horizontal: 16),
+        prefixIcon: widget.icon != null
+            ? Icon(
+                widget.icon,
+                size: 20,
+              )
+            : null,
         filled: true,
         fillColor: _focusNode.hasFocus
             ? ThemeProvider.primary.withAlpha(15)
