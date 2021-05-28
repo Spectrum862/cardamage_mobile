@@ -1,6 +1,7 @@
-import 'package:cardamage_detect/theme/theme.dart';
+import 'package:cardamage_detect/theme/ThemeManager.dart';
 import 'package:cardamage_detect/widgets/CTextField.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Navbar extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class Navbar extends StatefulWidget {
 class _Navbar extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
+    final themeManger = Provider.of<ThemeNotifier>(context);
     return Row(
       children: [
         Flexible(
@@ -19,16 +21,18 @@ class _Navbar extends State<Navbar> {
           small: true,
         )),
         SizedBox(width: 16),
-        Icon(
-          Icons.dark_mode,
-          color: ThemeProvider.gray7,
-          size: 30,
+        IconButton(
+          icon: Icon(
+            themeManger.isDark ? Icons.light_mode : Icons.dark_mode,
+            color: Theme.of(context).textTheme.bodyText2.color,
+            size: 30,
+          ),
+          onPressed: () => themeManger.changeTheme(),
         ),
-        SizedBox(width: 16),
         IconButton(
           icon: Icon(
             Icons.person_rounded,
-            color: ThemeProvider.gray7,
+            color: Theme.of(context).textTheme.bodyText2.color,
             size: 30,
           ),
         ),

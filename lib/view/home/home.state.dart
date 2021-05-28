@@ -8,7 +8,7 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.only(left: 24, right: 24),
+          padding: EdgeInsets.only(top: 16, left: 24, right: 24),
           child: Column(
             children: [
               Navbar(),

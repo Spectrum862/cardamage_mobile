@@ -1,4 +1,4 @@
-import 'package:cardamage_detect/theme/theme.dart';
+import 'package:cardamage_detect/theme/DesignToken.dart';
 import 'package:flutter/material.dart';
 
 class CTextField extends StatefulWidget {
@@ -44,26 +44,30 @@ class _CTextField extends State<CTextField> {
             ? Icon(
                 widget.icon,
                 size: 20,
+                color: Theme.of(context).textTheme.caption.color,
               )
             : null,
         filled: true,
         fillColor: _focusNode.hasFocus
-            ? ThemeProvider.primary.withAlpha(15)
-            : ThemeProvider.white,
+            ? primary.withAlpha(15)
+            : Theme.of(context).primaryColor,
+        hintStyle: Theme.of(context).textTheme.caption,
         enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: ThemeProvider.white),
+            borderSide: BorderSide(
+              color: Theme.of(context).primaryColor,
+            ),
             borderRadius: widget.small
-                ? BorderRadius.circular(ThemeProvider.smallRadius)
-                : BorderRadius.circular(ThemeProvider.baseRadius)),
+                ? BorderRadius.circular(smallRadius)
+                : BorderRadius.circular(baseRadius)),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: ThemeProvider.primary),
+          borderSide: BorderSide(color: primary),
           borderRadius: widget.small
-              ? BorderRadius.circular(ThemeProvider.smallRadius)
-              : BorderRadius.circular(ThemeProvider.baseRadius),
+              ? BorderRadius.circular(smallRadius)
+              : BorderRadius.circular(baseRadius),
         ),
         hintText: widget.hintText,
       ),
-      style: TextStyle(fontSize: widget.small ? 14 : 14),
+      style: Theme.of(context).textTheme.bodyText2,
       controller: widget.controller,
     );
   }

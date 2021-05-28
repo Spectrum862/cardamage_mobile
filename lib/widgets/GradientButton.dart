@@ -1,4 +1,4 @@
-import 'package:cardamage_detect/theme/theme.dart';
+import 'package:cardamage_detect/theme/DesignToken.dart';
 import 'package:flutter/material.dart';
 
 class GradientButton extends StatefulWidget {
@@ -23,11 +23,11 @@ class _GradientButton extends State<GradientButton> {
       height: widget.height ?? 72,
       decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [ThemeProvider.primaryLight, ThemeProvider.primary],
+            colors: [primaryLight, primary],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          borderRadius: BorderRadius.circular(ThemeProvider.baseRadius)),
+          borderRadius: BorderRadius.circular(baseRadius)),
       child: TextButton(
         child: Center(
           child: Text(

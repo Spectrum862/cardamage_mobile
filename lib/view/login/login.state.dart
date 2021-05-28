@@ -1,5 +1,4 @@
 import 'package:cardamage_detect/router/route.dart';
-import 'package:cardamage_detect/theme/theme.dart';
 import 'package:cardamage_detect/view/login/login.dart';
 import 'package:cardamage_detect/widgets/CTextField.dart';
 import 'package:cardamage_detect/widgets/GradientButton.dart';
@@ -16,7 +15,6 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemeProvider.gray3,
       body: Center(
         child: Container(
           padding: EdgeInsets.only(right: 24, left: 24),
@@ -26,6 +24,7 @@ class LoginPageState extends State<LoginPage> {
               Text(
                 'Hello',
                 style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                // style: Theme.of(context).textTheme.headline5,
               ),
               SizedBox(
                 height: 16,
@@ -56,6 +55,7 @@ class LoginPageState extends State<LoginPage> {
               ),
               GradientButton(
                 label: 'Sign In',
+                onPress: () => PageRouter.toHomePage(context),
               )
             ],
           ),
