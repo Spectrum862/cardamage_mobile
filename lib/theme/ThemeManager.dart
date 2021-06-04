@@ -14,6 +14,7 @@ class ThemeNotifier with ChangeNotifier {
       brightness: Brightness.dark,
       scaffoldBackgroundColor: gray9,
       primaryColor: gray7,
+      accentColor: gray5,
       textTheme: TextTheme(
           headline3: TextStyle(color: white, fontWeight: FontWeight.w700),
           bodyText2: TextStyle(color: white),
@@ -24,6 +25,7 @@ class ThemeNotifier with ChangeNotifier {
       brightness: Brightness.light,
       scaffoldBackgroundColor: gray3,
       primaryColor: white,
+      accentColor: gray5,
       textTheme: TextTheme(
           headline3: TextStyle(color: gray9, fontWeight: FontWeight.w700),
           bodyText2: TextStyle(color: gray9),

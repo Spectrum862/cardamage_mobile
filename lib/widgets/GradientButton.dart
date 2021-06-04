@@ -6,8 +6,10 @@ class GradientButton extends StatefulWidget {
   final Icon icon;
   final String label;
   final double height;
+  final bool loading;
 
-  GradientButton({Key key, this.onPress, this.icon, this.label, this.height})
+  GradientButton(
+      {Key key, this.onPress, this.icon, this.label, this.height, this.loading})
       : super(key: key);
 
   @override
