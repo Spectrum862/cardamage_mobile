@@ -43,6 +43,10 @@ class PredictedImagesCubit extends Cubit<PredictedImagesState> {
     }
   }
 
+  void clearState() async {
+    emit(PredictedImagesState());
+  }
+
   fileToBase64(String path) {
     final bytes = File(path).readAsBytesSync();
     return base64Encode(bytes);

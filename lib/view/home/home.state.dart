@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cardamage_detect/bloc/PredictedImages/predicted_images_cubit.dart';
+import 'package:cardamage_detect/bloc/PredictedImages/predicted_images_state.dart';
 import 'package:cardamage_detect/theme/DesignToken.dart';
 import 'package:cardamage_detect/view/home/home.dart';
 import 'package:cardamage_detect/widgets/GradientButton.dart';
@@ -22,6 +23,13 @@ class HomePageState extends State<HomePage> {
     setState(() {
       if (res != null) {
         _image = res;
+        if (Provider.of<PredictedImagesCubit>(context, listen: false)
+                .state
+                .predictedImage !=
+            null) {
+          Provider.of<PredictedImagesCubit>(context, listen: false)
+              .clearState();
+        }
       } else {
         print('No image selected.');
       }
@@ -41,7 +49,7 @@ class HomePageState extends State<HomePage> {
               SizedBox(
                 height: 16,
               ),
-              GradientButton(label: 'getImage', onPress: () => getImage()),
+              GradientButton(label: 'Select Image', onPress: () => getImage()),
               SizedBox(
                 height: 16,
               ),
@@ -49,6 +57,16 @@ class HomePageState extends State<HomePage> {
                 child: _image != null
                     ? Column(
                         children: [
+                          Container(
+                            child: Text(
+                              'SELECTED IMAGE',
+                              style: Theme.of(context).textTheme.headline5,
+                            ),
+                            alignment: Alignment.centerLeft,
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
                           Container(
                             height: 200,
                             child: ListView(
@@ -69,9 +87,16 @@ class HomePageState extends State<HomePage> {
                           SizedBox(
                             height: 16,
                           ),
-                          GradientButton(
-                            label: 'Predict',
-                            onPress: () => predictProvider.predictImage(_image),
+                          Container(
+                            child: predictProvider.state.predictedImage == null
+                                ? GradientButton(
+                                    loading: predictProvider.state.status ==
+                                        PredictedImagesStatus.loading,
+                                    label: 'Predict',
+                                    onPress: () =>
+                                        predictProvider.predictImage(_image),
+                                  )
+                                : null,
                           )
                         ],
                       )
@@ -81,31 +106,46 @@ class HomePageState extends State<HomePage> {
                 height: 16,
               ),
               Container(
-                child: predictProvider.state.predictedImage != null
-                    ? Container(
-                        height: 200,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            for (var image
-                                in predictProvider.state.predictedImage)
-                              Container(
-                                padding: EdgeInsets.only(
-                                    right: image ==
-                                            predictProvider
-                                                .state.predictedImage.last
-                                        ? 0
-                                        : 8),
-                                child: ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.circular(baseRadius),
-                                  child: Image.memory(
-                                    image,
-                                  ),
-                                ),
-                              )
-                          ],
-                        ),
+                child: predictProvider.state.predictedImage != null &&
+                        _image != null
+                    ? Column(
+                        children: [
+                          Container(
+                            child: Text(
+                              'PREDICTED IMAGE',
+                              style: Theme.of(context).textTheme.headline5,
+                            ),
+                            alignment: Alignment.centerLeft,
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Container(
+                            height: 200,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                for (var image
+                                    in predictProvider.state.predictedImage)
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                        right: image ==
+                                                predictProvider
+                                                    .state.predictedImage.last
+                                            ? 0
+                                            : 8),
+                                    child: ClipRRect(
+                                      borderRadius:
+                                          BorderRadius.circular(baseRadius),
+                                      child: Image.memory(
+                                        image,
+                                      ),
+                                    ),
+                                  )
+                              ],
+                            ),
+                          ),
+                        ],
                       )
                     : null,
               ),

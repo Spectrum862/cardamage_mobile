@@ -30,7 +30,7 @@ class LoginPageState extends State<LoginPage> {
                 height: 16,
               ),
               Text(
-                'Lorem ipsum dolor sit amet, consectetur ',
+                'CAR DAMAGE ESTIMATION SYSTEM',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,

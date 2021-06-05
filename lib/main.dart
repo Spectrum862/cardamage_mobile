@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeNotifier>(
         builder: (context, theme, _) => MaterialApp(
+              debugShowCheckedModeBanner: false,
               theme: theme.getTheme(),
               home: LoginPage(),
             ));

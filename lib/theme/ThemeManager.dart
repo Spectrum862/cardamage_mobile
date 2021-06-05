@@ -17,6 +17,7 @@ class ThemeNotifier with ChangeNotifier {
       accentColor: gray5,
       textTheme: TextTheme(
           headline3: TextStyle(color: white, fontWeight: FontWeight.w700),
+          headline5: TextStyle(color: white, fontWeight: FontWeight.w700),
           bodyText2: TextStyle(color: white),
           caption: TextStyle(color: gray5)));
 
@@ -28,6 +29,7 @@ class ThemeNotifier with ChangeNotifier {
       accentColor: gray5,
       textTheme: TextTheme(
           headline3: TextStyle(color: gray9, fontWeight: FontWeight.w700),
+          headline5: TextStyle(color: gray9, fontWeight: FontWeight.w700),
           bodyText2: TextStyle(color: gray9),
           caption: TextStyle(color: gray5)));
 

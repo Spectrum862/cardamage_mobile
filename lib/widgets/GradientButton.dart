@@ -1,5 +1,6 @@
 import 'package:cardamage_detect/theme/DesignToken.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class GradientButton extends StatefulWidget {
   final Function onPress;
@@ -9,7 +10,12 @@ class GradientButton extends StatefulWidget {
   final bool loading;
 
   GradientButton(
-      {Key key, this.onPress, this.icon, this.label, this.height, this.loading})
+      {Key key,
+      this.onPress,
+      this.icon,
+      this.label,
+      this.height,
+      this.loading = false})
       : super(key: key);
 
   @override
@@ -30,15 +36,21 @@ class _GradientButton extends State<GradientButton> {
             end: Alignment.bottomRight,
           ),
           borderRadius: BorderRadius.circular(baseRadius)),
-      child: TextButton(
-        child: Center(
-          child: Text(
-            widget.label,
-            style: TextStyle(color: Color(0xFFFFFFFF)),
-          ),
-        ),
-        onPressed: widget.onPress,
-      ),
+      child: widget.loading
+          ? SpinKitRing(
+              color: Colors.white,
+              size: 40.0,
+              lineWidth: 5,
+            )
+          : TextButton(
+              child: Center(
+                child: Text(
+                  widget.label,
+                  style: TextStyle(color: Color(0xFFFFFFFF)),
+                ),
+              ),
+              onPressed: widget.onPress,
+            ),
     );
   }
 }
