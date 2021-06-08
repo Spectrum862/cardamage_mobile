@@ -1,3 +1,4 @@
+import 'package:cardamage_detect/bloc/UserProfile/user_profile_cubit.dart';
 import 'package:cardamage_detect/theme/ThemeManager.dart';
 import 'package:cardamage_detect/widgets/CTextField.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +10,15 @@ class Navbar extends StatefulWidget {
 }
 
 class _Navbar extends State<Navbar> {
+  onLogout() {
+    Provider.of<UserProfileCubit>(context, listen: false).logout();
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeManger = Provider.of<ThemeNotifier>(context);
+
     return Row(
       children: [
         Flexible(
@@ -35,6 +42,7 @@ class _Navbar extends State<Navbar> {
             color: Theme.of(context).textTheme.bodyText2.color,
             size: 30,
           ),
+          onPressed: onLogout,
         ),
       ],
     );

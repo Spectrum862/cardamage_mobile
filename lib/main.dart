@@ -1,7 +1,11 @@
 import 'package:cardamage_detect/bloc/Insurance/insurance_cubit.dart';
 import 'package:cardamage_detect/bloc/PredictedImages/predicted_images_cubit.dart';
+import 'package:cardamage_detect/bloc/UserProfile/user_profile_cubit.dart';
 import 'package:cardamage_detect/theme/ThemeManager.dart';
+import 'package:cardamage_detect/view/home/home.dart';
 import 'package:cardamage_detect/view/login/login.dart';
+import 'package:cardamage_detect/widgets/LoaddingScreen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +16,8 @@ void main() {
     child: MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => PredictedImagesCubit()),
-        BlocProvider(create: (_) => InsuranceCubit())
+        BlocProvider(create: (_) => InsuranceCubit()),
+        BlocProvider(create: (_) => UserProfileCubit())
       ],
       child: MyApp(),
     ),
@@ -26,7 +31,17 @@ class MyApp extends StatelessWidget {
         builder: (context, theme, _) => MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: theme.getTheme(),
-              home: LoginPage(),
+              home: BlocBuilder<UserProfileCubit, UserProfileState>(
+                builder: (context, state) {
+                  if (state is UserProfileSigned) {
+                    return HomePage();
+                  }
+                  if (state is UserProfileInitial) {
+                    return LoadingScreen();
+                  }
+                  return LoginPage();
+                },
+              ),
             ));
   }
 }

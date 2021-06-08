@@ -60,7 +60,19 @@ class HomePageState extends State<HomePage> {
                           )
                         : insuranceState is InsuranceLoading
                             ? LoadingScreen()
-                            : null)
+                            : Flexible(
+                                child: ListView(
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        'No data',
+                                        style:
+                                            Theme.of(context).textTheme.caption,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ))
               ],
             ),
           ),

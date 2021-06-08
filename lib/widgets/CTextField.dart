@@ -6,8 +6,14 @@ class CTextField extends StatefulWidget {
   final TextEditingController controller;
   final IconData icon;
   final bool small;
+  final bool isPassword;
   CTextField(
-      {Key key, this.hintText, this.controller, this.icon, this.small = false})
+      {Key key,
+      this.hintText,
+      this.controller,
+      this.icon,
+      this.small = false,
+      this.isPassword = false})
       : super(key: key);
 
   @override
@@ -36,6 +42,9 @@ class _CTextField extends State<CTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       focusNode: _focusNode,
+      enableSuggestions: !widget.isPassword,
+      autocorrect: !widget.isPassword,
+      obscureText: widget.isPassword,
       decoration: InputDecoration(
         contentPadding: widget.small
             ? EdgeInsets.symmetric(vertical: 0.0)

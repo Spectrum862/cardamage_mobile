@@ -36,6 +36,8 @@ class PredictedImagesCubit extends Cubit<PredictedImagesState> {
         emit(state.copyWith(
             status: PredictedImagesStatus.success,
             predictedImage: predictedImages));
+      } else {
+        throw (res.body);
       }
     } catch (e) {
       print(e);
