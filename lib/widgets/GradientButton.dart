@@ -1,4 +1,5 @@
 import 'package:cardamage_detect/theme/DesignToken.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -43,11 +44,20 @@ class _GradientButton extends State<GradientButton> {
               lineWidth: 5,
             )
           : TextButton(
-              child: Center(
-                child: Text(
-                  widget.label,
-                  style: TextStyle(color: Color(0xFFFFFFFF)),
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  widget.icon != null
+                      ? Container(
+                          padding: EdgeInsets.only(right: 8),
+                          child: widget.icon != null ? widget.icon : null,
+                        )
+                      : Container(),
+                  Text(
+                    widget.label,
+                    style: TextStyle(color: Color(0xFFFFFFFF)),
+                  )
+                ],
               ),
               onPressed: widget.onPress,
             ),
