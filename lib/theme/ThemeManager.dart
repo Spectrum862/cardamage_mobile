@@ -18,6 +18,8 @@ class ThemeNotifier with ChangeNotifier {
       textTheme: TextTheme(
           headline3: TextStyle(color: white, fontWeight: FontWeight.w700),
           headline5: TextStyle(color: white, fontWeight: FontWeight.w700),
+          subtitle1: TextStyle(color: white, fontWeight: FontWeight.w700),
+          subtitle2: TextStyle(color: white, fontWeight: FontWeight.w700),
           bodyText2: TextStyle(color: white),
           caption: TextStyle(color: gray5)));
 
@@ -30,6 +32,8 @@ class ThemeNotifier with ChangeNotifier {
       textTheme: TextTheme(
           headline3: TextStyle(color: gray9, fontWeight: FontWeight.w700),
           headline5: TextStyle(color: gray9, fontWeight: FontWeight.w700),
+          subtitle1: TextStyle(color: gray9, fontWeight: FontWeight.w700),
+          subtitle2: TextStyle(color: gray9, fontWeight: FontWeight.w700),
           bodyText2: TextStyle(color: gray9),
           caption: TextStyle(color: gray5)));
 

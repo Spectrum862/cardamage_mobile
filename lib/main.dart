@@ -1,3 +1,4 @@
+import 'package:cardamage_detect/bloc/Insurance/insurance_cubit.dart';
 import 'package:cardamage_detect/bloc/PredictedImages/predicted_images_cubit.dart';
 import 'package:cardamage_detect/theme/ThemeManager.dart';
 import 'package:cardamage_detect/view/login/login.dart';
@@ -9,7 +10,10 @@ void main() {
   runApp(ChangeNotifierProvider<ThemeNotifier>(
     create: (_) => ThemeNotifier(),
     child: MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => PredictedImagesCubit())],
+      providers: [
+        BlocProvider(create: (_) => PredictedImagesCubit()),
+        BlocProvider(create: (_) => InsuranceCubit())
+      ],
       child: MyApp(),
     ),
   ));

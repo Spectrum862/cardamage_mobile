@@ -18,7 +18,7 @@ class PredictedImagesCubit extends Cubit<PredictedImagesState> {
     emit(state.copyWith(status: PredictedImagesStatus.loading));
     List<String> base64Images = [];
     List<Uint8List> predictedImages = [];
-    Uri url = Uri.parse('${ApiPath.endpoint}model/predict');
+    Uri url = Uri.parse('${ApiPath.endpoint}/model/predict');
     try {
       for (var item in media) base64Images.add(fileToBase64(item.path));
       var res = await httpClient.post(url,
