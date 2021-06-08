@@ -29,4 +29,19 @@ class InsuranceCubit extends Cubit<InsuranceState> {
       emit(InsuranceError(message: e));
     }
   }
+
+  Future refresh() async {
+    try {
+      final res = await httpClient.get(ApiPath.insurancePath);
+      if (res.statusCode == 200 && res.body != null) {
+        Map<String, Insurance> listTemp = {};
+        jsonDecode(res.body).forEach(
+            (key, value) => {listTemp[key] = Insurance.fromJson(value)});
+        print(listTemp);
+        emit(InsuranceLoaded(insurance: listTemp));
+      }
+    } catch (e) {
+      print('refresh error : $e');
+    }
+  }
 }

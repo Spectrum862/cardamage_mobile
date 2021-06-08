@@ -19,7 +19,7 @@ class InsuranceLoaded extends InsuranceState {
   InsuranceLoaded({this.insurance});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [insurance];
 }
 
 class InsuranceError extends InsuranceState {

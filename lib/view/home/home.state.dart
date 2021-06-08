@@ -10,48 +10,59 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomePageState extends State<HomePage> {
+  Future<void> handleRefresh() async {
+    await Provider.of<InsuranceCubit>(context, listen: false).refresh();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final insuranceState = Provider.of<InsuranceCubit>(context).state;
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.only(top: 16, left: 24, right: 24),
-          child: Column(
-            children: [
-              Navbar(),
-              SizedBox(
-                height: 24,
-              ),
-              Container(
-                child: Text(
-                  'Insurances',
-                  style: Theme.of(context).textTheme.headline5,
+        child: RefreshIndicator(
+          onRefresh: handleRefresh,
+          child: Container(
+            padding: EdgeInsets.only(top: 16, left: 24, right: 24),
+            child: Column(
+              children: [
+                Navbar(),
+                SizedBox(
+                  height: 24,
                 ),
-                alignment: Alignment.centerLeft,
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Container(
-                  child: insuranceState is InsuranceLoaded
-                      ? Column(
-                          children: [
-                            for (var item in insuranceState.insurance.entries)
-                              Container(
-                                padding: EdgeInsets.only(top: 4, bottom: 4),
-                                child: InsuranceItem(
-                                  insuranceId: item.value.insuranceId,
-                                  insuranceOwner: item.value.name,
-                                  dataId: item.key,
-                                ),
-                              )
-                          ],
-                        )
-                      : insuranceState is InsuranceLoading
-                          ? LoadingScreen()
-                          : null)
-            ],
+                Container(
+                  child: Text(
+                    'Insurances',
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  alignment: Alignment.centerLeft,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Container(
+                    child: insuranceState is InsuranceLoaded
+                        ? Flexible(
+                            child: ListView(
+                              children: [
+                                for (var item
+                                    in insuranceState.insurance.entries)
+                                  Container(
+                                    padding: EdgeInsets.only(top: 4, bottom: 4),
+                                    child: InsuranceItem(
+                                      insuranceId: item.value.insuranceId,
+                                      insuranceOwner: item.value.name,
+                                      dataId: item.key,
+                                    ),
+                                  )
+                              ],
+                            ),
+                          )
+                        : insuranceState is InsuranceLoading
+                            ? LoadingScreen()
+                            : null)
+              ],
+            ),
           ),
         ),
       ),
