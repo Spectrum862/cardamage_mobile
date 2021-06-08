@@ -26,7 +26,7 @@ class InsuranceCubit extends Cubit<InsuranceState> {
         emit(InsuranceLoaded(insurance: listTemp));
       }
     } catch (e) {
-      emit(InsuranceError(message: e));
+      emit(InsuranceError(message: 'error'));
     }
   }
 
